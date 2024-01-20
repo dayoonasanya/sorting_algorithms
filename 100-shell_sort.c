@@ -43,7 +43,7 @@ void shell_sort(int *array, size_t size)
  * @b: b.
  */
 
-void swap_ints(int *a, int *b)
+void swap_func(int *a, int *b)
 {
 	int tmp;
 
