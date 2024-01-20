@@ -2,34 +2,32 @@
 
 
 
+
 /**
- * shell_sort - sort.
- * @array: array.
- * @size: size.
+ * swap_func - swap
+ *
+ * @a: a.
+ * @b: b.
+ * Return: 0
  */
 
 
-void shell_sort(int *array, size_t size)
+void swap_func(int *a, int *b)
 {
-	unsigned int gap = 1;
+	int tmp;
 
-	while (gap < size / 3)
-		gap = gap * 3 + 1;
-
-	while (gap >= 1)
-	{
-		gap_sort(array, size, gap);
-		gap = (gap - 1) / 3;
-		print_array(array, size);
-	}
+	tmp = *b;
+	*b = *a;
+	*a = tmp;
 }
 
 
+
 /**
- * gap_sort - sort.
- * @array: array.
- * @size: size.
- * @gap: gap.
+ * gap_sort - sort
+ * @array: array
+ * @size: size
+ * @gap: gap
  */
 
 void gap_sort(int *array, size_t size, unsigned int gap)
@@ -50,19 +48,22 @@ void gap_sort(int *array, size_t size, unsigned int gap)
 
 
 /**
- * swap_func - swap.
- *
- * @a: a.
- * @b: b.
- * Return: 0
+ * shell_sort - shell
+ * @array: array
+ * @size: size
  */
 
-
-void swap_func(int *a, int *b)
+void shell_sort(int *array, size_t size)
 {
-	int tmp;
+	unsigned int gap = 1;
 
-	tmp = *b;
-	*b = *a;
-	*a = tmp;
+	while (gap < size / 3)
+		gap = gap * 3 + 1;
+
+	while (gap >= 1)
+	{
+		gap_sort(array, size, gap);
+		gap = (gap - 1) / 3;
+		print_array(array, size);
+	}
 }
