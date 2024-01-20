@@ -2,68 +2,52 @@
 
 
 
-
 /**
- * swap_func - swap
+ * shell_sort - shell.
+ * @array: array
+ * @size: size
  *
- * @a: a.
- * @b: b.
- * Return: 0
+ * 
  */
 
-
-void swap_func(int *a, int *b)
-{
-	int tmp;
-
-	tmp = *b;
-	*b = *a;
-	*a = tmp;
-}
-
-
-
-/**
- * gap_sort - sort
- * @array: array
- * @size: size
- * @gap: gap
- */
-
-void gap_sort(int *array, size_t size, unsigned int gap)
-{
-	size_t j, k;
-
-	for (j = gap; j < size; j++)
-	{
-		k = j;
-		while (k >= gap && array[k] < array[k - gap])
-		{
-			swap_func(array + k, array + k - gap);
-			k -= gap;
-		}
-	}
-}
-
-
-
-/**
- * shell_sort - shell
- * @array: array
- * @size: size
- */
 
 void shell_sort(int *array, size_t size)
 {
-	unsigned int gap = 1;
+	size_t gap, i, j;
 
-	while (gap < size / 3)
+	if (array == NULL || size < 2)
+		return;
+
+	for (gap = 1; gap < (size / 3);)
 		gap = gap * 3 + 1;
 
-	while (gap >= 1)
+	for (; gap >= 1; gap /= 3)
 	{
-		gap_sort(array, size, gap);
-		gap = (gap - 1) / 3;
+		for (i = gap; i < size; i++)
+		{
+			j = i;
+			while (j >= gap && array[j - gap] > array[j])
+			{
+				swap_func(array + j, array + (j - gap));
+				j -= gap;
+			}
+		}
 		print_array(array, size);
 	}
+}
+
+
+/**
+ * swap_func - swap
+ * @a: a.
+ * @b: b.
+ */
+
+void swap_ints(int *a, int *b)
+{
+	int tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
 }
