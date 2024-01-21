@@ -4,6 +4,8 @@
 
 #include <stdio.h>
 #include "sort.h"
+#include <limits.h>
+#include <stdlib.h>
 
 /**
  * enum bool - Enumeration of Boolean values.
